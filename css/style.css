@@ -1,0 +1,247 @@
+/* Import Font dari Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+/* Variabel Warna */
+:root {
+    --bg-white: #fdfbfb;
+    --bg-light-brown: #EADBC8;
+    --text-dark: #3A322E;
+    --brown-darker: #DAC0A3;
+}
+
+/* Reset dan Pengaturan Dasar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth; /* Efek scroll halus */
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, var(--bg-white) 50%, var(--bg-light-brown) 50%);
+    color: var(--text-dark);
+    overflow-y: auto; /* Izinkan scroll vertikal */
+}
+
+/* Siluet Beruang (dibuat fixed agar tidak ikut scroll) */
+body::before {
+    content: '';
+    position: fixed; /* Diubah ke fixed */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background-image: url('geometric-bear.webp');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 80%;
+    opacity: 0.3;
+    z-index: -1;
+}
+
+/* STYLE NAVBAR */
+header {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    height: 70px;
+}
+
+nav .logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    text-decoration: none;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 600;
+    padding-bottom: 5px;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+    border-color: var(--text-dark);
+}
+
+
+/* STYLE BAGIAN (SECTION) */
+section {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 2rem 2rem;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+    padding: 40px;
+    width: 90%;
+    max-width: 600px;
+    text-align: center;
+}
+
+.profile-picture {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 5px solid var(--brown-darker);
+    object-fit: cover;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.profile-name {
+    margin-top: 20px;
+    font-size: 2.5rem;
+}
+
+.profile-tagline {
+    margin-bottom: 30px;
+}
+
+.profile-section {
+    margin-bottom: 25px;
+    text-align: left;
+    border-left: 3px solid var(--brown-darker);
+    padding-left: 15px;
+}
+
+.project-placeholder {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.project-item {
+    background: rgba(0,0,0,0.1);
+    padding: 2rem 1rem;
+    border-radius: 10px;
+}
+
+.btn {
+    display: inline-block;
+    background-color: var(--text-dark);
+    color: var(--bg-white);
+    padding: 12px 25px;
+    margin-top: 1rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease-in-out;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* PENAMBAHAN STYLE UNTUK TOMBOL KONTAK */
+.contact-buttons {
+    display: flex;
+    flex-wrap: wrap; /* Agar rapi di layar kecil */
+    justify-content: center;
+    gap: 1rem; /* Jarak antar tombol */
+    margin-top: 1.5rem;
+}
+
+.contact-buttons .btn {
+    margin-top: 0; /* Hapus margin atas khusus untuk tombol ini */
+}
+
+.contact-buttons .btn i {
+    margin-right: 8px; /* Jarak antara ikon dan teks */
+}
+
+/* PENAMBAHAN STYLE UNTUK KARTU PROYEK */
+
+.project-container {
+    display: grid;
+    /* Membuat 1 kolom di hp, 2 di tablet, 3 di desktop */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem; /* Jarak antar kartu proyek */
+    margin-top: 2rem;
+    text-align: left; /* Kembalikan teks ke rata kiri di dalam kartu */
+}
+
+.project-item {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    overflow: hidden; /* Agar gambar tidak keluar dari sudut rounded */
+    display: flex;
+    flex-direction: column; /* Menyusun konten secara vertikal */
+    transition: transform 0.3s ease;
+}
+
+.project-item:hover {
+    transform: translateY(-5px);
+}
+
+.project-item img {
+    width: 100%;
+    height: auto; /* Atur tinggi gambar agar seragam */
+    object-fit: cover; /* Agar gambar tidak gepeng */
+}
+
+.project-item h3 {
+    font-size: 1.2rem;
+    margin: 1rem 1rem 0.5rem;
+}
+
+.project-item p {
+    font-size: 0.9rem;
+    margin: 0 1rem 1rem;
+    flex-grow: 1; /* Mendorong tombol ke bawah */
+}
+
+.btn-proyek {
+    display: block; /* Agar memenuhi lebar kartu */
+    text-align: center;
+    background-color: var(--brown-darker);
+    color: var(--text-dark);
+    padding: 10px;
+    margin: 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.btn-proyek:hover {
+    background-color: var(--text-dark);
+    color: var(--bg-white);
+}
