@@ -245,3 +245,51 @@ section {
     background-color: var(--text-dark);
     color: var(--bg-white);
 }
+
+/* PENAMBAHAN STYLE UNTUK NAVBAR RESPONSIF */
+
+/* 1. Atur Ikon Hamburger */
+#menu-icon {
+    font-size: 1.8rem;
+    cursor: pointer;
+    display: none; /* Sembunyikan di desktop */
+}
+
+/* 2. Media Query untuk Layar HP/Tablet (lebar maks 768px) */
+@media (max-width: 768px) {
+    /* Tampilkan ikon hamburger */
+    #menu-icon {
+        display: block;
+    }
+
+    /* Atur posisi menu navigasi */
+    .nav-links {
+        position: absolute;
+        top: 70px; /* Tinggi navbar */
+        right: -100%; /* Sembunyikan di luar layar kanan */
+        width: 100%;
+        height: auto;
+        background: rgba(234, 219, 200, 0.95); /* Warna background menu dropdown */
+        backdrop-filter: blur(10px);
+        display: flex;
+        flex-direction: column; /* Ubah orientasi jadi vertikal */
+        align-items: center;
+        padding: 20px 0;
+        transition: right 0.4s ease-in-out;
+    }
+
+    /* Style untuk memunculkan menu */
+    .nav-links.active {
+        right: 0; /* Pindahkan ke dalam layar */
+    }
+
+    /* Atur jarak setiap item menu */
+    .nav-links li {
+        margin: 15px 0;
+    }
+
+    /* Agar logo tidak terlalu ke pinggir */
+    nav {
+        padding: 0 5%;
+    }
+}
