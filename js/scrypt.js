@@ -21,3 +21,20 @@ window.addEventListener('scroll', () => {
         }
     });
 });
+
+// KODE BARU UNTUK FUNGSI HAMBURGER MENU
+
+// 1. Pilih elemen yang dibutuhkan
+const menuIcon = document.querySelector('#menu-icon');
+const navLinks = document.querySelector('.nav-links');
+
+// 2. Tambahkan event listener saat ikon di-klik
+menuIcon.addEventListener('click', () => {
+    // 3. Toggle class 'active' pada menu
+    navLinks.classList.toggle('active');
+});
+
+// Menutup menu saat salah satu link di-klik (opsional, tapi bagus)
+navLinks.addEventListener('click', () => {
+    navLinks.classList.remove('active');
+});
