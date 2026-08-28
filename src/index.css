@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --neo-bg: #FAF7F0;
+    --neo-border: #000000;
+    --neo-text: #121212;
+  }
+
+  .dark {
+    --neo-bg: #121212;
+    --neo-border: #FFFFFF;
+    --neo-text: #F4F4F5;
+  }
+
+  body {
+    background-color: var(--neo-bg);
+    color: var(--neo-text);
+    background-image: radial-gradient(rgba(0, 0, 0, 0.12) 1.2px, transparent 1.2px);
+    background-size: 24px 24px;
+    background-attachment: fixed;
+  }
+
+  .dark body, body.dark {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1.2px, transparent 1.2px);
+    background-size: 24px 24px;
+    background-attachment: fixed;
+  }
+}
+
+/* Custom Neo-Brutalist Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F4EFE6;
+  border-left: 2px solid #000;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #1C1C1E;
+  border-left: 2px solid #333;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #FFE600;
+  border: 2px solid #000;
+  border-radius: 0px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #FFE600;
+  border: 2px solid #000;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #FF8A00;
+}
+
+/* Tactile Click & Active Motion */
+.neo-press {
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.neo-press:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px 0px #000000;
+}
+
+.dark .neo-press:hover {
+  box-shadow: 6px 6px 0px 0px #FFE600;
+}
+
+.neo-press:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px 0px #000000 !important;
+}
+
+.dark .neo-press:active {
+  box-shadow: 1px 1px 0px 0px #FFE600 !important;
+}
+
+/* Focus States */
+button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible {
+  outline: 3px solid #FFE600 !important;
+  outline-offset: 2px;
+}

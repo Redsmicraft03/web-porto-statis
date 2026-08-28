@@ -1,101 +1,37 @@
 <!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portofolio Hanif Wisanggeni P</title>
+<html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22%20%20%220%22%20%22100%22%20%22100%22><text y=%22.9em%22 font-size=%2290%22>🐻</text></svg>" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hanif Wisanggeni P — Backend Developer | Go Portfolio</title>
     
-    <meta property="og:title" content="Portofolio Hanif Wisanggeni P" />
+    <!-- Meta Descriptions & SEO -->
+    <meta name="description" content="Portofolio resmi Hanif Wisanggeni P - Backend Developer lulusan S1 Teknik Informatika berfokus pada ekosistem Go (Golang), Fiber, RESTful API, dan arsitektur database modern." />
+    <meta name="keywords" content="Hanif Wisanggeni, Backend Developer, Golang, Go Developer Indonesia, Fiber, GORM, Web Portfolio" />
+    <meta name="author" content="Hanif Wisanggeni P" />
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Hanif Wisanggeni P — Backend Developer Portfolio" />
     <meta property="og:type" content="website" />
-    <meta property="og:description" content="Mahasiswa Teknik Informatika dengan minat besar pada backend development menggunakan Go (Golang)." />
+    <meta property="og:description" content="Backend Developer dengan fokus pada bahasa Go (Golang), performa tinggi, dan clean architecture." />
+    <meta property="og:url" content="https://hanif-v1.vercel.app/" />
+    <meta property="og:image" content="/images/preview.png" />
+    <meta property="og:site_name" content="Hanif Wisanggeni Portfolio" />
     
-    <meta property="og:url" content="https://hanif-v1.vercel.app/" /> 
-    <meta property="og:image" content="https://hanif-v1.vercel.app/images/preview.png" /> 
-    
-    <meta property="og:site_name" content="Portofolio Hanif Wisanggeni P" />
-    <link rel="stylesheet" href="css/style.css">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-</head>
-<body>
-    <header>
-        <nav>
-            <a href="#" class="logo">Portofolio 🐻</a>
-            
-            <div id="menu-icon">
-                <i class="fas fa-bars"></i>
-            </div>
-    
-            <ul class="nav-links">
-                <li><a href="#about">About Me</a></li>
-                <li><a href="#proyek">Proyek</a></li>
-                <li><a href="#kontak">Sosial Media</a></li>
-            </ul>
-        </nav>
-    </header>
+    <!-- Twitter Meta -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Hanif Wisanggeni P — Backend Developer" />
+    <meta name="twitter:description" content="Backend Developer dengan fokus pada ekosistem Go (Golang) dan performa tinggi." />
+    <meta name="twitter:image" content="/images/preview.png" />
 
-    <main>
-        <section id="about">
-            <div class="card">
-                <img src="images/aku.jpg" alt="Foto Profil Hanif Wisanggeni" class="profile-picture">
-                <h1 class="profile-name">Hanif Wisanggeni P</h1>
-                <p class="profile-tagline">Backend Developer</p>
-                <div class="profile-section">
-                    <h2><i class="fa-solid fa-user-pen"></i> Tentang Aku</h2>
-                    <p>Sebagai seorang mahasiswa Teknik Informatika, saya memiliki minat besar pada dunia backend development. Saat ini, saya sedang fokus mendalami bahasa Go (Golang) untuk membangun aplikasi sisi server. Saya sangat antusias untuk terus belajar dan menerapkan ilmu saya ke dalam proyek-proyek nyata.</p>
-                </div>
-                <div class="profile-section">
-                    <h2><i class="fa-solid fa-graduation-cap"></i> Pendidikan</h2>
-                    <p>S1 Teknik Informatika - Universitas Indraprasta PGRI (2022 - 2026)</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="proyek">
-            <div class="card">
-                <h1><i class="fa-solid fa-paw"></i> Proyek Saya</h1>
-                <p>Berikut adalah beberapa proyek yang pernah saya kerjakan.</p>
-                
-                <div class="project-container">
-    
-                    <div class="project-item">
-                        <img src="images/proyek1.png" alt="Gambar Proyek El-Jazira's Perfumery">
-                        <h3>El-Jazira's Perfumery</h3>
-                        <p>
-                            Aplikasi web e-commerce untuk katalog parfum dengan dashboard admin. Dibuat menggunakan <strong>Go (Golang)</strong>, framework <strong>Fiber</strong> untuk performa tinggi, dan <strong>GORM</strong> sebagai ORM untuk manajemen database.
-                        </p>
-                        <a href="https://el-jaziras-perfumery.vercel.app/" target="_blank" class="btn-proyek">Lihat Proyek</a>
-                    </div>
-                    <div class="project-item">
-                        <img src="images/proyek2.png" alt="Gambar Proyek Aplikasi Cuaca">
-                        <h3>Aplikasi Cuaca</h3>
-                        <p>Sebuah aplikasi cuaca sederhana bergaya CLI yang menampilkan informasi tentang suatu kota menggunakan API OpenWeatherMap.</p>
-                        <a href="https://github.com/Redsmicraft03/backend-weather" target="_blank" class="btn-proyek">Lihat Proyek</a>
-                    </div>
-                    
-                </div>
-            </div>
-        </section>
-
-        <section id="kontak">
-            <div class="card">
-                <h1><i class="fa-solid fa-user"></i> Sosial Media</h1>
-                <p>Kunjungi media sosial saya untuk informasi terbaru.</p>
-                <div class="contact-buttons">
-                    <a href="https://wa.me/6282114541807" target="_blank" class="btn">
-                        <i class="fab fa-whatsapp"></i> WhatsApp
-                    </a>
-                    <a href="https://instagram.com/hanif.wp_" target="_blank" class="btn">
-                        <i class="fab fa-instagram"></i> Instagram
-                    </a>
-                    <a href="https://github.com/Redsmicraft03" target="_blank" class="btn">
-                        <i class="fab fa-github"></i> GitHub
-                    </a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <script src="js/scrypt.js"></script>
-</body>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  </head>
+  <body class="bg-[#FAF7F0] dark:bg-[#121212] text-[#121212] dark:text-[#F4F4F5] font-sans antialiased selection:bg-[#FFE600] selection:text-black transition-colors duration-200 overflow-x-hidden min-h-screen">
+    <div id="root"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
 </html>
