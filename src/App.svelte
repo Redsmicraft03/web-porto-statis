@@ -10,8 +10,8 @@
   import BearWidget from './components/BearWidget.svelte';
   import Footer from './components/Footer.svelte';
 
-  // Theme state: default to dark or load from localStorage
-  let isDark = $state(true);
+  // Theme state: default to light mode or load from localStorage
+  let isDark = $state(false);
   let activeSection = $state('hero');
   let selectedProject = $state(null);
   let toastMessage = $state(null);

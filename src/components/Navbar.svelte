@@ -2,7 +2,7 @@
   import { onMount } from 'svelte';
   import { Moon, Sun, Menu, X, Send } from '@lucide/svelte';
 
-  let { isDark = true, toggleTheme = () => {}, activeSection = 'hero' } = $props();
+  let { isDark = false, toggleTheme = () => {}, activeSection = 'hero' } = $props();
 
   let isScrolled = $state(false);
   let mobileMenuOpen = $state(false);
