@@ -17,115 +17,116 @@
 
   const navLinks = [
     { name: 'Tentang', href: '#about' },
+    { name: 'Layanan', href: '#services' },
     { name: 'Keahlian', href: '#skills' },
     { name: 'Proyek', href: '#projects' },
+    { name: 'FAQ', href: '#faq' },
     { name: 'Kontak', href: '#contact' },
   ];
 </script>
 
-<header class="sticky top-0 left-0 right-0 z-40 px-4 py-3 sm:py-4 transition-all">
-  <div class="max-w-6xl mx-auto">
-    <div class="bg-white dark:bg-[#18181B] border-2 border-black dark:border-white shadow-neo sm:shadow-neo-md px-4 sm:px-6 py-3 flex items-center justify-between transition-all">
-      
-      <!-- Logo Badge -->
-      <a 
-        href="/" 
-        class="group flex items-center gap-2.5 font-mono font-black text-lg tracking-tight text-black dark:text-white"
+<header class="sticky top-0 left-0 right-0 z-40 bg-[#fff7ed]/95 dark:bg-[#121118]/95 backdrop-blur-md border-b-2 border-black/40 dark:border-white/20 transition-all">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
+    
+    <!-- Logo Badge (Soft Brutalism Pill) -->
+    <a 
+      href="#hero" 
+      class="group flex items-center gap-3 px-4 py-2 rounded-full bg-white dark:bg-[#1a1921] border-2 border-black/40 dark:border-white/30 shadow-soft-sm hover:-translate-y-0.5 transition-all"
+    >
+      <div class="w-4 h-4 rounded-full bg-[#f97316] animate-pulse"></div>
+      <div class="flex items-center gap-1.5">
+        <span class="font-extrabold tracking-wide text-gray-900 dark:text-white text-sm font-display">
+          HANIF<span class="text-[#f97316]">.DEV</span>
+        </span>
+        <span class="hidden sm:inline-block text-[10px] font-mono px-2 py-0.5 rounded-full bg-[#f97316]/15 text-[#f97316] font-bold">
+          GO
+        </span>
+      </div>
+    </a>
+
+    <!-- Desktop Nav Links (Pill Container) -->
+    <nav class="hidden md:flex items-center gap-1 px-3 py-1.5 rounded-full bg-white/70 dark:bg-zinc-800/70 border-2 border-black/30 dark:border-white/20 shadow-soft-sm font-sans">
+      {#each navLinks as link}
+        {@const isActive = activeSection === link.href.replace('#', '')}
+        <a
+          href={link.href}
+          class={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all ${
+            isActive
+              ? 'bg-white dark:bg-zinc-700 text-[#f97316] shadow-sm border border-black/20 dark:border-white/20'
+              : 'text-gray-700 dark:text-gray-300 hover:bg-white/60 dark:hover:bg-zinc-700/60 hover:text-black dark:hover:text-white'
+          }`}
+        >
+          {link.name}
+        </a>
+      {/each}
+    </nav>
+
+    <!-- Right Action Buttons -->
+    <div class="flex items-center gap-3">
+      <!-- Theme Toggle Button -->
+      <button
+        onclick={toggleTheme}
+        type="button"
+        aria-label="Ubah tema"
+        class="w-10 h-10 rounded-xl flex items-center justify-center bg-white dark:bg-[#1a1921] text-gray-800 dark:text-gray-100 border-2 border-black/40 dark:border-white/30 shadow-soft-sm hover:-translate-y-0.5 active:translate-y-0.5 transition-all cursor-pointer"
+        title="Ganti Mode Gelap/Terang"
       >
-        <div class="w-9 h-9 bg-[#FFE600] text-black border-2 border-black flex items-center justify-center text-lg shadow-neo-sm group-hover:rotate-6 transition-transform">
-          🐻
-        </div>
-        <div class="flex flex-col">
-          <span class="leading-none font-extrabold text-base tracking-wider font-display">
-            HANIF<span class="text-[#FF8A00] dark:text-[#FFE600]">.DEV</span>
-          </span>
-          <span class="text-[10px] font-mono text-zinc-600 dark:text-zinc-400 font-bold uppercase tracking-widest">
-            GO BACKEND
-          </span>
-        </div>
+        {#if isDark}
+          <Sun class="w-4 h-4 text-[#fbbf24]" />
+        {:else}
+          <Moon class="w-4 h-4 text-gray-800" />
+        {/if}
+      </button>
+
+      <!-- Get in Touch CTA -->
+      <a
+        href="#contact"
+        class="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-xl bg-[#f97316] hover:bg-[#ea580c] text-white font-bold text-xs sm:text-sm border-3 border-black/75 dark:border-white/80 shadow-soft hover:-translate-y-1 active:translate-y-0.5 transition-all"
+      >
+        <Send class="w-3.5 h-3.5" />
+        <span>Get in Touch</span>
       </a>
 
-      <!-- Desktop Nav Links -->
-      <nav class="hidden md:flex items-center gap-2 font-mono">
-        {#each navLinks as link}
-          {@const isActive = activeSection === link.href.replace('#', '')}
-          <a
-            href={link.href}
-            class={`px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider transition-all ${
-              isActive
-                ? 'bg-[#FFE600] text-black border-2 border-black shadow-neo-sm font-black'
-                : 'text-zinc-700 dark:text-zinc-300 hover:text-black dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800 border-2 border-transparent hover:border-black dark:hover:border-white'
-            }`}
-          >
-            {link.name}
-          </a>
-        {/each}
-      </nav>
-
-      <!-- Right Action Buttons -->
-      <div class="flex items-center gap-2.5 font-mono">
-        <!-- Theme Toggle Button -->
-        <button
-          onclick={toggleTheme}
-          type="button"
-          aria-label="Ubah tema"
-          class="w-9 h-9 flex items-center justify-center bg-zinc-100 dark:bg-zinc-800 text-black dark:text-white border-2 border-black dark:border-white shadow-neo-sm hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 transition-all cursor-pointer"
-          title="Ganti Mode Gelap/Terang"
-        >
-          {#if isDark}
-            <Sun class="w-4 h-4 text-[#FFE600]" />
-          {:else}
-            <Moon class="w-4 h-4 text-black" />
-          {/if}
-        </button>
-
-        <!-- Quick Contact Action -->
-        <a
-          href="#contact"
-          class="hidden sm:inline-flex items-center gap-2 px-4 py-2 bg-[#FFE600] hover:bg-[#FFD600] text-black border-2 border-black shadow-neo-sm hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 text-xs font-bold uppercase tracking-wider transition-all"
-        >
-          <Send class="w-3.5 h-3.5" />
-          <span>Hubungi</span>
-        </a>
-
-        <!-- Mobile Hamburger Toggle -->
-        <button
-          onclick={() => mobileMenuOpen = !mobileMenuOpen}
-          type="button"
-          aria-label="Menu"
-          class="md:hidden w-9 h-9 flex items-center justify-center bg-zinc-100 dark:bg-zinc-800 text-black dark:text-white border-2 border-black dark:border-white shadow-neo-sm cursor-pointer"
-        >
-          {#if mobileMenuOpen}
-            <X class="w-4 h-4" />
-          {:else}
-            <Menu class="w-4 h-4" />
-          {/if}
-        </button>
-      </div>
-
+      <!-- Mobile Hamburger Toggle -->
+      <button
+        onclick={() => mobileMenuOpen = !mobileMenuOpen}
+        type="button"
+        aria-label="Menu"
+        class="md:hidden w-10 h-10 rounded-xl bg-white dark:bg-[#1a1921] text-gray-800 dark:text-gray-100 border-2 border-black/40 dark:border-white/30 shadow-soft-sm flex items-center justify-center cursor-pointer"
+      >
+        {#if mobileMenuOpen}
+          <X class="w-5 h-5" />
+        {:else}
+          <Menu class="w-5 h-5" />
+        {/if}
+      </button>
     </div>
 
-    <!-- Mobile Dropdown Menu -->
-    {#if mobileMenuOpen}
-      <div class="md:hidden mt-2 p-4 bg-white dark:bg-[#18181B] border-2 border-black dark:border-white shadow-neo-md flex flex-col gap-2 font-mono animate-in fade-in slide-in-from-top-2 duration-150">
+  </div>
+
+  <!-- Mobile Dropdown Menu -->
+  {#if mobileMenuOpen}
+    <div class="md:hidden px-6 py-4 border-t-2 border-black/30 dark:border-white/20 bg-[#fff7ed] dark:bg-[#121118] animate-in fade-in slide-in-from-top-2 duration-150">
+      <div class="flex flex-col gap-2 font-sans">
         {#each navLinks as link}
           <a
             href={link.href}
             onclick={() => mobileMenuOpen = false}
-            class="px-4 py-2.5 text-xs font-bold uppercase tracking-wider border-2 border-black dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 text-black dark:text-white hover:bg-[#FFE600] hover:text-black hover:border-black flex items-center justify-between transition-colors"
+            class="px-4 py-3 rounded-xl bg-white dark:bg-[#1a1921] border-2 border-black/40 dark:border-white/30 font-bold text-gray-800 dark:text-white flex items-center justify-between shadow-soft-sm hover:bg-[#f97316] hover:text-white transition-all"
           >
             <span>{link.name}</span>
-            <span class="font-bold">→</span>
+            <span class="font-bold text-base">→</span>
           </a>
         {/each}
         <a
           href="#contact"
           onclick={() => mobileMenuOpen = false}
-          class="mt-2 text-center py-2.5 bg-[#FFE600] text-black border-2 border-black shadow-neo-sm font-bold text-xs uppercase tracking-wider"
+          class="mt-2 text-center py-3 rounded-xl bg-[#f97316] text-white font-bold text-sm border-3 border-black/75 dark:border-white/80 shadow-soft"
         >
-          Hubungi Saya 🐻
+          Get in Touch ✉️
         </a>
       </div>
-    {/if}
-  </div>
+    </div>
+  {/if}
 </header>
+

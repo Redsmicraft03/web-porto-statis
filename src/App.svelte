@@ -2,9 +2,12 @@
   import { onMount } from 'svelte';
   import Navbar from './components/Navbar.svelte';
   import Hero from './components/Hero.svelte';
+  import Services from './components/Services.svelte';
   import About from './components/About.svelte';
   import Skills from './components/Skills.svelte';
   import Projects from './components/Projects.svelte';
+  import CtaBanner from './components/CtaBanner.svelte';
+  import Faq from './components/Faq.svelte';
   import ProjectModal from './components/ProjectModal.svelte';
   import Contact from './components/Contact.svelte';
   import BearWidget from './components/BearWidget.svelte';
@@ -48,7 +51,7 @@
 
   onMount(() => {
     const handleScroll = () => {
-      const sections = ['hero', 'about', 'skills', 'projects', 'contact'];
+      const sections = ['hero', 'about', 'services', 'skills', 'projects', 'faq', 'contact'];
       const scrollPosition = window.scrollY + 200;
 
       for (const sectionId of sections) {
@@ -69,23 +72,24 @@
   });
 </script>
 
-<div class="min-h-screen flex flex-col relative text-[#121212] dark:text-[#F4F4F5]">
-  <!-- Top Marquee Banner (Minimalist Neo-Brutalist Technical Ribbon) -->
-  <div class="w-full bg-[#FFE600] text-black border-b-2 border-black py-1.5 px-4 overflow-hidden select-none font-mono text-[11px] font-bold tracking-wider z-40">
-    <div class="flex items-center justify-between max-w-6xl mx-auto">
+<div class="min-h-screen flex flex-col relative text-gray-900 dark:text-gray-100 selection:bg-[#f97316] selection:text-white">
+  
+  <!-- Top Marquee Banner (Soft Brutalism Pastel Ribbon) -->
+  <div class="w-full bg-[#f97316] text-white border-b-2 border-black/30 dark:border-white/20 py-2 px-4 overflow-hidden select-none font-sans text-xs font-extrabold tracking-wider z-40">
+    <div class="flex items-center justify-between max-w-7xl mx-auto">
       <div class="flex items-center gap-3">
-        <span class="inline-block w-2 h-2 bg-emerald-500 rounded-full animate-ping"></span>
-        <span>HANIF.DEV // GOLANG BACKEND SPECIALIST</span>
+        <span class="inline-block w-2.5 h-2.5 bg-white rounded-full animate-ping"></span>
+        <span>HANIF.DEV // GOLANG BACKEND SPECIALIST & S1 INFORMATIKA</span>
       </div>
-      <div class="hidden sm:flex items-center gap-4 text-[10px]">
-        <span>CHACHA20-POLY1305</span>
-        <span>•</span>
+      <div class="hidden sm:flex items-center gap-4 text-xs font-mono">
         <span>CLEAN ARCHITECTURE</span>
         <span>•</span>
-        <span>HIGH-PERFORMANCE API</span>
+        <span>HIGH-CONCURRENCY API</span>
+        <span>•</span>
+        <span>CHACHA20-POLY1305</span>
       </div>
-      <div class="font-bold uppercase tracking-widest text-[10px] bg-black text-[#FFE600] px-2 py-0.5 border border-black">
-        v2.0 SVELTE
+      <div class="font-extrabold uppercase tracking-widest text-[10px] bg-white text-[#f97316] px-2.5 py-0.5 rounded-full border border-black/30 shadow-soft-sm">
+        SOFT BRUTALISM v2.0
       </div>
     </div>
   </div>
@@ -100,9 +104,12 @@
   <!-- Main Content Sections -->
   <main class="flex-1 z-10">
     <Hero />
+    <Services />
     <About />
     <Skills />
     <Projects onSelectProject={(project) => selectedProject = project} />
+    <CtaBanner />
+    <Faq />
     <BearWidget onShowToast={showToast} />
     <Contact onShowToast={showToast} />
   </main>
@@ -118,11 +125,12 @@
     />
   {/if}
 
-  <!-- Toast Notification (Neo-Brutalist Badge) -->
+  <!-- Toast Notification (Soft Brutalism Pill Badge) -->
   {#if toastMessage}
-    <div class="fixed bottom-6 right-6 z-50 px-5 py-3 bg-[#FFE600] text-black border-2 border-black shadow-neo-md flex items-center gap-3 font-mono font-bold text-xs sm:text-sm animate-in slide-in-from-bottom-4 duration-200">
-      <span class="text-base">🐻</span>
+    <div class="fixed bottom-6 right-6 z-50 px-5 py-3.5 bg-white dark:bg-[#1a1921] text-gray-900 dark:text-white border-3 border-black/75 dark:border-white/80 shadow-soft-lg rounded-2xl flex items-center gap-3 font-sans font-extrabold text-xs sm:text-sm animate-in slide-in-from-bottom-4 duration-200">
+      <span class="text-lg">🐻</span>
       <span>{toastMessage}</span>
     </div>
   {/if}
 </div>
+

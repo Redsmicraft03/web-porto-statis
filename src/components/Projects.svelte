@@ -1,5 +1,5 @@
 <script>
-  import { Eye, ArrowUpRight, Layers } from '@lucide/svelte';
+  import { Eye, ArrowUpRight, Layers, ExternalLink } from '@lucide/svelte';
   import { portfolioData } from '../data/portfolioData';
 
   let { onSelectProject = () => {} } = $props();
@@ -14,93 +14,107 @@
       ? projects 
       : projects.filter(p => p.category.includes(filter) || (filter === 'Fullstack / Backend' && p.category.includes('Backend')))
   );
+
+  const badgeColors = ['bg-[#34d399]', 'bg-[#8b5cf6]', 'bg-[#fbbf24]'];
 </script>
 
-<section id="projects" class="py-16 md:py-24 border-t-2 border-black dark:border-zinc-800 bg-zinc-50/40 dark:bg-[#151518]/40">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<section id="projects" class="py-16 md:py-24 border-t-2 border-black/30 dark:border-white/20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     
-    <!-- Section Heading -->
-    <div class="text-center max-w-2xl mx-auto mb-12">
-      <div class="inline-flex items-center gap-2 px-3.5 py-1 bg-[#FFE600] text-black border-2 border-black shadow-neo-sm font-mono text-xs font-black uppercase tracking-wider mb-3">
-        <span>🚀</span>
-        <span>Showcase Proyek</span>
+    <!-- Section Heading & Counter Pill -->
+    <div class="flex flex-col md:flex-row items-center justify-between gap-6 mb-12">
+      <div class="text-center md:text-left">
+        <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white dark:bg-[#1a1921] border-2 border-black/40 dark:border-white/30 shadow-soft-sm text-xs sm:text-sm font-extrabold uppercase tracking-wider mb-3 text-gray-800 dark:text-white">
+          <span class="w-2.5 h-2.5 rounded-full bg-[#34d399]"></span>
+          <span>Selected Projects</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-display text-gray-900 dark:text-white tracking-tight">
+          Karya & Implementasi Nyata
+        </h2>
       </div>
-      <h2 class="text-3xl sm:text-4xl font-black font-display tracking-tight">
-        Karya & Implementasi Nyata
-      </h2>
-      <p class="mt-2 text-sm sm:text-base text-zinc-600 dark:text-zinc-400 font-medium">
-        Implementasi nyata sistem server, enkripsi kriptografi, dan layanan web modern.
-      </p>
+
+      <!-- Pill Badge Counter -->
+      <span class="px-5 py-2 rounded-full bg-white dark:bg-[#1a1921] border-2 border-black/40 dark:border-white/30 shadow-soft-sm text-xs sm:text-sm font-extrabold font-mono text-gray-800 dark:text-white">
+        {filteredProjects.length} Works Displayed
+      </span>
     </div>
 
-    <!-- Category Filters -->
-    <div class="flex justify-center items-center gap-2.5 mb-12 flex-wrap font-mono">
+    <!-- Category Filters (Soft Brutalism Pill Filter Group) -->
+    <div class="flex justify-center md:justify-start items-center gap-2.5 mb-12 flex-wrap font-sans">
       {#each categories as cat}
         <button
           onclick={() => filter = cat}
           type="button"
-          class={`px-4 py-2 text-xs font-bold uppercase tracking-wider transition-all border-2 border-black cursor-pointer ${
+          class={`px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all border-2 border-black/40 dark:border-white/30 cursor-pointer ${
             filter === cat
-              ? 'bg-[#FFE600] text-black shadow-neo-sm font-black -translate-x-0.5 -translate-y-0.5'
-              : 'bg-white dark:bg-[#18181B] text-zinc-800 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 shadow-neo-sm'
+              ? 'bg-[#f97316] text-white border-black/80 dark:border-white/80 shadow-soft-sm font-extrabold -translate-y-0.5'
+              : 'bg-white dark:bg-[#1a1921] text-gray-700 dark:text-gray-300 hover:bg-[#fff7ed] dark:hover:bg-zinc-800 shadow-soft-sm'
           }`}
         >
-          {cat === 'All' ? 'SEMUA PROYEK' : cat}
+          {cat === 'All' ? 'Semua Proyek' : cat}
         </button>
       {/each}
     </div>
 
-    <!-- Projects Grid -->
+    <!-- Projects Grid (Soft Brutalism 3-Column Cards) -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {#each filteredProjects as project (project.id)}
+      {#each filteredProjects as project, i (project.id)}
+        {@const colorClass = badgeColors[i % badgeColors.length]}
         <div
-          class="bg-white dark:bg-[#18181B] border-2 border-black dark:border-white shadow-neo-md flex flex-col justify-between overflow-hidden hover:-translate-x-1 hover:-translate-y-1 hover:shadow-neo-lg transition-all duration-200"
+          class="bg-white dark:bg-[#1a1921] border-3 border-black/75 dark:border-white/80 shadow-soft rounded-3xl flex flex-col justify-between overflow-hidden hover:-translate-y-2 transition-transform duration-300 group"
         >
           <div>
-            <!-- Project Image Frame -->
-            <div class="relative h-48 sm:h-52 w-full overflow-hidden border-b-2 border-black bg-zinc-900">
-              <img
-                src={project.image}
-                alt={project.title}
-                class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-300"
-              />
+            <!-- Project Image Frame with floating circular modal button -->
+            <div class="relative h-52 sm:h-56 w-full overflow-hidden border-b-2 border-black/30 dark:border-white/20 bg-zinc-900">
+              <button
+                type="button"
+                class="w-full h-full p-0 border-0 bg-transparent block text-left cursor-pointer"
+                onclick={() => onSelectProject(project)}
+                aria-label={`Lihat detail arsitektur ${project.title}`}
+              >
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
+                />
+              </button>
               
-              <!-- Category Neo Sticker -->
-              <span class="absolute top-3.5 left-3.5 px-2.5 py-1 bg-black text-[#FFE600] font-mono text-[10px] font-black uppercase tracking-wider border border-black shadow-neo-sm">
+              <!-- Category Pill -->
+              <span class={`absolute top-4 left-4 px-3.5 py-1 rounded-full ${colorClass} text-white font-sans text-[11px] font-extrabold uppercase tracking-wider shadow-soft-sm pointer-events-none`}>
                 {project.category}
               </span>
 
-              <!-- Quick Details Button -->
+              <!-- Floating Circular Details Button -->
               <button
                 onclick={() => onSelectProject(project)}
                 type="button"
                 aria-label="Lihat Detail"
-                class="absolute top-3.5 right-3.5 w-8 h-8 bg-[#FFE600] text-black border-2 border-black flex items-center justify-center shadow-neo-sm hover:scale-110 active:scale-95 transition-all cursor-pointer"
-                title="Lihat Detail Arsitektur"
+                class="absolute top-4 right-4 w-10 h-10 rounded-full bg-white dark:bg-[#1a1921] text-gray-900 dark:text-white border-2 border-black/75 dark:border-white/80 flex items-center justify-center shadow-soft-sm hover:-translate-y-1 hover:scale-110 active:scale-95 transition-all cursor-pointer z-10"
+                title="Buka Preview Modal"
               >
-                <Eye class="w-4 h-4 stroke-[2.5]" />
+                <ExternalLink class="w-4 h-4 stroke-[2.5]" />
               </button>
             </div>
 
             <!-- Project Meta Content -->
-            <div class="p-6">
-              <h3 class="text-xl font-black font-display text-black dark:text-white mb-1.5">
+            <div class="p-6 sm:p-7">
+              <h3 class="text-xl sm:text-2xl font-extrabold font-display text-gray-900 dark:text-white mb-1.5">
                 {project.title}
               </h3>
               
-              <p class="text-xs font-mono font-bold text-[#FF8A00] dark:text-[#FFE600] mb-3 uppercase tracking-tight">
+              <p class="text-xs font-mono font-bold text-[#f97316] mb-3 uppercase tracking-tight">
                 {project.tagline}
               </p>
 
-              <p class="text-xs text-zinc-600 dark:text-zinc-300 line-clamp-3 leading-relaxed mb-5">
+              <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-300 line-clamp-3 leading-relaxed mb-6 font-sans">
                 {project.description}
               </p>
 
-              <!-- Tech stack badges -->
-              <div class="flex flex-wrap gap-1.5 mb-2 font-mono">
+              <!-- Tech stack badges (Soft Pills) -->
+              <div class="flex flex-wrap gap-1.5 font-sans">
                 {#each project.techStack as tech}
                   <span
-                    class="px-2 py-0.5 bg-zinc-100 dark:bg-zinc-800 border border-black dark:border-zinc-600 text-[10px] font-bold text-black dark:text-zinc-200"
+                    class="px-2.5 py-1 rounded-lg bg-[#fff7ed] dark:bg-zinc-800 border border-black/20 dark:border-white/20 text-[11px] font-bold text-gray-800 dark:text-gray-200"
                   >
                     {tech}
                   </span>
@@ -110,21 +124,21 @@
           </div>
 
           <!-- Action Buttons -->
-          <div class="p-6 pt-0 flex items-center gap-2.5 font-mono">
+          <div class="p-6 sm:p-7 pt-0 flex items-center gap-3 font-sans">
             <a
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              class="flex-1 flex items-center justify-center gap-2 py-2.5 bg-[#FFE600] hover:bg-[#FFD600] text-black border-2 border-black shadow-neo-sm hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 text-xs font-black uppercase tracking-wider transition-all"
+              class="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl bg-[#f97316] hover:bg-[#ea580c] text-white border-3 border-black/75 dark:border-white/80 shadow-soft-sm hover:-translate-y-0.5 active:translate-y-0.5 text-xs sm:text-sm font-extrabold uppercase tracking-wider transition-all"
             >
-              <span>Buka Proyek</span>
+              <span>Buka Website</span>
               <ArrowUpRight class="w-4 h-4 stroke-[3]" />
             </a>
 
             <button
               onclick={() => onSelectProject(project)}
               type="button"
-              class="p-2.5 bg-white dark:bg-[#252528] text-black dark:text-white border-2 border-black dark:border-white shadow-neo-sm hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5 transition-all cursor-pointer"
+              class="px-3.5 py-3 rounded-xl bg-white dark:bg-[#252528] text-gray-900 dark:text-white border-3 border-black/75 dark:border-white/80 shadow-soft-sm hover:-translate-y-0.5 active:translate-y-0.5 transition-all cursor-pointer"
               title="Detail Arsitektur"
             >
               <Layers class="w-4 h-4 stroke-[2.5]" />
@@ -137,3 +151,4 @@
 
   </div>
 </section>
+
